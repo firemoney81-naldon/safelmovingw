@@ -1,23 +1,546 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      color: #333;
+      background: #fdfdfd;
+    }
+    header, nav, section, footer {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    header {
+      padding: 40px 30px;
+      background-color: #f7f9fc;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    nav {
+      background: #007bff;
+      border-radius: 10px;
+      text-align: center;
+      padding: 18px 0;
+      margin-bottom: 30px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 20px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s, background-color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    h2 {
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      color: #007bff;
+      font-size: 2rem;
+    }
+    h3 {
+      color: #333;
+      font-size: 1.5rem;
+      margin-top: 25px;
+    }
+    h4 {
+      font-size: 1.2rem;
+      color: #444;
+      margin-top: 15px;
+    }
+    .main-text {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .highlight {
+      color: #007bff;
+      font-weight: 700;
+    }
+    .content-card {
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: #fafafa;
+      transition: box-shadow 0.3s ease;
+    }
+    .content-card:hover {
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.1);
+    }
+    .cta {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .cta:hover {
+      background-color: #0056b3;
+    }
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #555;
+    }
+    form input[type="text"], form input[type="tel"], form input[type="number"], form select, form input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 4px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      resize: vertical;
+    }
+    form button {
+      margin-top: 10px;
+      width: 100%;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: background-color 0.3s;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+    .faq dt {
+      font-weight: 700;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #007bff;
+      font-size: 1.1rem;
+    }
+    .faq dd {
+      margin-left: 15px;
+      margin-top: 8px;
+      color: #555;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 3px solid #007bff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 1rem;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: 700;
+      color: #333;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 10px;
+    }
+    .citation-block {
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-left: 4px solid #007bff;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    .citation-block ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .citation-block li {
+      margin-bottom: 8px;
+    }
+    .visual-graph {
+      margin: 20px 0;
+      background-color: #f7f9fc;
+      border: 1px solid #eee;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .visual-graph h4 {
+      margin-bottom: 15px;
+      color: #007bff;
+    }
+    .bar-chart {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 200px;
+      border-bottom: 2px solid #ccc;
+    }
+    .bar {
+      width: 15%;
+      background-color: #007bff;
+      margin: 0 5px;
+      position: relative;
+      transition: height 0.5s ease;
+      animation: barGrow 1s ease forwards;
+    }
+    .bar span {
+      position: absolute;
+      top: -25px;
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      color: #555;
+    }
+    @keyframes barGrow {
+        from { height: 0; }
+        to { height: var(--height); }
+    }
+  </style>
+
+  <!-- JSON-LD Schema for Service Offer -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "serviceType": "이사견적 서비스",
+    "name":"사다리차 이사 비용 비교 견적",
+    "description":"전국 지역별 사다리차 이사 비용을 비교하고, 층수별 요금을 투명하게 안내합니다. 포장이사, 일반이사, 반포장이사 등 다양한 이사 유형별 비용을 확인하세요.",
+    "provider": {
+      "@type": "Organization",
+      "name": "이사 비용 비교 센터",
+      "url": "https://www.yourdomain.kr"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "이사 서비스",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "포장이사"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "사다리차 사용"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "원룸이사"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "사무실이사"}}
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header id="상단">
+  <h1>2026년 최신 사다리차 이사 비용 총정리: 합리적인 가격 비교 및 절약 노하우</h1>
+  <p>전국 <strong class="highlight">사다리차 이사 비용</strong>을 층수별, 지역별로 상세 분석합니다. 숨겨진 추가 요금 없이 합리적인 견적을 지금 바로 확인하세요!</p>
+  <a href="#무료견적신청" class="cta">무료 견적 신청 및 비용 계산하기</a>
+</header>
+
+<nav>
+  <a href="#비용요인">사다리차 비용 결정 요인</a>
+  <a href="#층수별비용">층수별 사다리차 요금표</a>
+  <a href="#절약노하우">비용 절약 노하우</a>
+  <a href="#견적비교">견적 비교 및 주의사항</a>
+  <a href="#무료견적신청">무료 견적 신청</a>
+  <a href="#자주묻는질문">FAQ</a>
+</nav>
+
+<section id="비용요인" aria-label="사다리차 이사 비용 결정 요인">
+  <h2>사다리차 이사 비용을 결정하는 5가지 핵심 요인</h2>
+  <div class="main-text">
+    <p>이사할 때 <strong class="highlight">사다리차 이사 비용</strong>은 전체 예산에서 상당한 부분을 차지할 수 있습니다. 특히 짐의 양이 많거나 고층으로 이사하는 경우 더욱 그렇죠. 사다리차 비용은 단순한 '장비 사용료'가 아니라, 다양한 변수에 의해 복합적으로 산출됩니다. 2026년 기준으로 사다리차 비용을 결정하는 주요 요인 5가지를 분석해드립니다. 이 요인들을 정확히 이해하면 <strong class="highlight">합리적인 가격</strong>으로 이사 견적을 받을 수 있습니다. 저희는 <a href="#견적비교">전국 사다리차 견적</a>을 비교하여 고객님께 최적의 솔루션을 제공합니다.</p>
+    <p>이사를 준비하는 분들이라면 "사다리차 사용료가 얼마일까?"가 가장 큰 궁금증일 것입니다. 하지만 단순하게 얼마라고 말씀드리기는 어렵습니다. 사다리차 견적은 층수, 짐량, 거리 등 여러 요소에 따라 유동적이기 때문입니다. <a href="#층수별비용">층수별 요금표</a>와 함께 이 요인들을 꼼꼼하게 살펴보세요. 이사철 성수기인 3~5월, 9~10월에는 비수기 대비 비용이 10~20% 상승할 수 있습니다. <a href="#절약노하우">사다리차 비용 절약 노하우</a>도 함께 참고하시면 도움이 됩니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>1. 층수 (가장 큰 요인)</h3>
+    <p>사다리차 비용에서 가장 큰 비중을 차지하는 것은 층수입니다. 2층에서 10층까지는 저층 사다리차가 투입되고, 11층부터 20층까지는 중층 사다리차, 21층 이상은 고층 사다리차가 투입됩니다. 층수가 높아질수록 더 높은 성능의 장비와 숙련된 기사가 필요하므로 비용이 증가합니다. 예를 들어 <strong class="highlight">서울 강남 지역</strong>의 10층 아파트 이사 비용은 5층 빌라 이사 비용보다 사다리차 사용료가 두 배 가까이 차이 날 수 있습니다. 특히 <strong class="highlight">부산 해운대</strong>나 <strong class="highlight">대구 수성구</strong>처럼 고층 주상복합이 많은 지역에서는 층수별 요금 차이가 더욱 뚜렷합니다. 층수 계산 시에는 출발지와 도착지 중 높은 층수의 기준을 적용합니다. 층수에 따른 정확한 <strong class="highlight">사다리차 요금표</strong>는 아래 <a href="#층수별비용">층수별 사다리차 요금표</a> 섹션에서 확인하실 수 있습니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>2. 짐의 양 (이사 유형)</h3>
+    <p>사다리차는 짐의 양(부피)에 따라 작업 시간이 달라집니다. 원룸이나 소형 아파트(24평 이하)의 <strong class="highlight">짐 운반 비용</strong>과 40평 이상의 대형 아파트 짐 운반 비용은 차이가 큽니다. 짐이 많으면 사다리차 작업 시간이 길어지고, 1일 1회만 운용 가능한 경우가 많아 비용이 상승합니다. <strong class="highlight">포장이사</strong>와 <strong class="highlight">일반이사</strong> 모두 짐량에 따라 사다리차 사용료가 변동됩니다. 짐량이 많은 경우, 여러 차례 운반해야 하므로 작업 인원 추가와 함께 총 <strong class="highlight">이사견적</strong>이 올라갑니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>3. 이사 지역 및 거리 (수도권 vs 지방)</h3>
+    <p>사다리차 이사 비용은 지역별로도 다릅니다. <strong class="highlight">서울, 경기</strong>와 같은 수도권 지역은 인건비와 장비 운영비가 상대적으로 높아 지방(ex: <strong class="highlight">경상북도 구미</strong>, <strong class="highlight">전라북도 전주</strong>, <strong class="highlight">충청남도 천안</strong>)보다 사다리차 사용료가 높게 책정되는 경향이 있습니다. 특히 <strong class="highlight">수원, 용인, 고양</strong> 등 대도시 외곽 지역은 장비 출동 거리에 따른 유류비가 추가될 수 있습니다. 출발지에서 도착지까지 거리가 멀어질수록 운반 시간과 비용이 증가합니다. 사다리차는 일반 트럭과 달리 장비 자체가 이동하는 데 시간이 더 걸리기 때문입니다. <a href="#견적비교">전국 사다리차 업체</a> 견적을 통해 지역별 시세 파악이 중요합니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>4. 작업 환경 및 특수 조건</h3>
+    <p>사다리차 작업이 어려운 환경에서는 추가 비용이 발생합니다. 예를 들어 아파트 단지 내에서 사다리차를 설치할 공간이 협소하거나, <strong class="highlight">사다리차 접근 금지 구역</strong>으로 지정된 곳이 있습니다. <strong class="highlight">골목이 좁은 빌라</strong>(ex: <strong class="highlight">서울 관악구</strong>, <strong class="highlight">경기 성남</strong>)나 <strong class="highlight">경사가 심한 지역</strong>(ex: <strong class="highlight">부산 영도구</strong>)에서는 사다리차 사용이 불가하여 이사 인력으로만 짐을 옮기는 '계단 운반'이 진행되는데, 이 경우 인건비가 더 많이 발생합니다. 또한, <strong class="highlight">베란다나 창문 구조</strong>가 사다리차 작업에 부적합한 경우에도 비용이 달라질 수 있습니다. 이 외에도 <strong class="highlight">짐 보관 이사</strong>나 <strong>입주청소 패키지</strong>를 함께 신청하면 사다리차 사용료가 할인될 수도 있습니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>5. 이사 시기 (성수기/비수기)</h3>
+    <p>이사 수요가 급증하는 <strong class="highlight">손 없는 날</strong>이나 주말, 공휴일, 그리고 이사 성수기(봄, 가을)에는 사다리차 예약이 어렵고 비용이 상승합니다. <strong class="highlight">2026년 이사 성수기</strong>는 3월에서 5월, 9월에서 10월로 예상됩니다. 비수기(여름, 겨울)에는 상대적으로 <strong class="highlight">사다리차 이사 비용</strong>을 저렴하게 이용할 수 있습니다. <strong class="highlight">사다리차 업체</strong>들은 이 시기에 맞춰 <a href="#무료견적신청">견적</a>을 다르게 책정하므로, 비용 절약을 원한다면 비수기를 노리는 것이 좋습니다.</p>
+  </div>
+</section>
+
+<section id="층수별비용" aria-label="층수별 사다리차 요금표 및 분석">
+  <h2>2026년 층수별 사다리차 이사 비용 요금표 (표준 시세)</h2>
+  <div class="main-text">
+    <p>사다리차 사용료는 층수가 높아질수록 비용이 증가하며, 일반적으로 10층을 기점으로 요금대가 달라집니다. 아래 표는 <strong class="highlight">전국 평균 층수별 사다리차 비용</strong>을 정리한 것입니다. 이는 이사 규모(포장이사, 일반이사, 원룸이사)와 짐량에 따라 변동될 수 있으므로 참고용으로 활용하시고, 정확한 비용은 현장 견적을 통해 확인하는 것이 좋습니다.</p>
+  </div>
+  <table>
+    <caption>사다리차 층수별 표준 요금표 (2026년 기준)</caption>
+    <thead>
+      <tr>
+        <th>층수 구분</th>
+        <th>적용 층수</th>
+        <th>사다리차 비용 (평균)</th>
+        <th>특징 및 참고사항</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>저층 사다리차</td>
+        <td>2층 ~ 5층</td>
+        <td>150,000원 ~ 200,000원</td>
+        <td>원룸, 빌라 이사. 짐량이 적으면 인력 운반과 비용 비교 필수.</td>
+      </tr>
+      <tr>
+        <td>중층 사다리차</td>
+        <td>6층 ~ 10층</td>
+        <td>200,000원 ~ 250,000원</td>
+        <td>아파트, 주상복합 이사. 가장 일반적인 사다리차 이용 구간.</td>
+      </tr>
+      <tr>
+        <td>고층 사다리차</td>
+        <td>11층 ~ 15층</td>
+        <td>250,000원 ~ 300,000원</td>
+        <td>아파트 중층 이상 이사. 장비 성능에 따른 비용 차이 발생.</td>
+      </tr>
+      <tr>
+        <td>초고층 사다리차</td>
+        <td>16층 ~ 24층</td>
+        <td>300,000원 ~ 400,000원</td>
+        <td>고층 아파트 이사. 특수 장비 투입으로 비용 상승.</td>
+      </tr>
+      <tr>
+        <td>초고층 특수장비</td>
+        <td>25층 이상</td>
+        <td>별도 문의</td>
+        <td>25층 이상은 고가 사다리차 혹은 스카이차(고가 작업차) 투입.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">
+    * 상기 비용은 <strong class="highlight">2026년 전국 평균 시세</strong>로, 이사 시간(오전/오후), 이사 요일, 계절적 요인, 지역별 특성에 따라 변동될 수 있습니다. (예: <strong class="highlight">서울 강남</strong>은 평균 대비 10~20% 높음, <strong class="highlight">전남 광주</strong>는 평균 대비 5~10% 낮음 등)
+  </div>
+
+  <div class="visual-graph">
+    <h4>층수별 사다리차 비용 변화 추이 (시각화)</h4>
+    <p>층수에 따른 비용 증가 경향을 한눈에 확인하세요. 층수가 높아질수록 비용은 비선형적으로 증가합니다.</p>
+    <div class="bar-chart">
+      <div class="bar" style="--height: 40%;" data-label="5층"><span>5층</span></div>
+      <div class="bar" style="--height: 60%;" data-label="10층"><span>10층</span></div>
+      <div class="bar" style="--height: 80%;" data-label="15층"><span>15층</span></div>
+      <div class="bar" style="--height: 95%;" data-label="20층"><span>20층</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="절약노하우" aria-label="사다리차 비용 절약 노하우">
+  <h2>사다리차 이사 비용을 절약하는 5가지 핵심 노하우</h2>
+  <div class="main-text">
+    <p>이사 비용을 절약하는 것은 모두의 관심사입니다. 특히 <strong class="highlight">사다리차 이사 비용</strong>은 꼼꼼한 준비를 통해 충분히 줄일 수 있습니다. 다음은 <strong class="highlight">사다리차 견적</strong>을 낮추는 실질적인 팁들입니다. 전국 어디든(<strong class="highlight">포항, 창원, 제주</strong> 등) 적용 가능한 방법이니, 이사 계획에 참고하세요.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>1. 비수기 이사 및 요일 선택</h3>
+    <p>이사 성수기(3~5월, 9~10월)를 피하고 비수기인 1~2월이나 7~8월에 이사하면 <strong class="highlight">사다리차 사용료</strong>를 포함한 전체 이사 비용을 10~20% 절감할 수 있습니다. 또한 주말보다는 평일(특히 화요일, 수요일) 이사를 선택하고, <strong class="highlight">손 없는 날</strong>을 피하는 것도 비용 절감에 효과적입니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>2. 짐량 최소화 및 셀프 포장</h3>
+    <p>이사 전에 불필요한 짐을 정리하여 짐량을 최소화하면 사다리차 작업 시간이 단축되고, 경우에 따라 더 작은 톤수의 사다리차를 사용할 수 있어 <strong class="highlight">이사 비용</strong>이 줄어듭니다. 또한, <strong class="highlight">반포장이사</strong>(큰 짐은 업체, 잔짐은 고객 포장)를 선택하면 <strong class="highlight">포장이사 비용</strong> 대비 사다리차 사용료를 절약할 수 있습니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>3. 사다리차 견적 비교 및 제휴 할인 활용</h3>
+    <p>한 업체에만 견적을 의뢰하지 말고 최소 3개 이상의 <strong class="highlight">사다리차 업체</strong> 또는 이사업체에 견적을 받아 비교하세요. <strong class="highlight">사다리차 견적 비교</strong>는 숨겨진 비용을 찾는 데 도움을 줍니다. 또한 이사업체와 제휴된 사다리차를 이용하면 단독으로 사다리차를 부르는 것보다 저렴한 경우가 많습니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>4. 작업 환경 사전 점검 및 허가</h3>
+    <p>사다리차 설치 장소의 환경을 사전에 점검하여, 사다리차 접근이 어려운 경우를 대비해야 합니다. <strong class="highlight">주차 공간 확보</strong>, <strong class="highlight">아파트 관리사무소 허가</strong> 등을 미리 확인하여 당일 추가 비용 발생을 막아야 합니다. 사다리차 작업이 가능한지 여부는 <strong class="highlight">현장 방문 견적</strong> 시 가장 중요하게 확인되는 요소입니다.</p>
+  </div>
+
+  <div class="content-card">
+    <h3>5. 사다리차 단독 이용 VS 이사업체 통합 견적</h3>
+    <p>일반적으로 <strong class="highlight">사다리차</strong>는 이사업체에서 통합 견적으로 받는 것이 단독으로 부르는 것보다 저렴합니다. 이사업체는 사다리차 기사와 고정 거래 관계를 맺고 있기 때문입니다. <strong class="highlight">사다리차</strong>만 따로 부를 경우(예: 가구 운반), 시간당 비용이 적용되어 오히려 비쌀 수 있습니다. <strong class="highlight">사무실 이사</strong>나 <strong>기업 이사</strong>의 경우, 짐량이 많기 때문에 통합 견적으로 받는 것이 필수적입니다.</p>
+  </div>
+</section>
+
+<section id="견적비교" aria-label="사다리차 이사 견적 비교 및 주의사항">
+  <h2>사다리차 이사 견적 비교 시 반드시 확인해야 할 사항</h2>
+  <div class="main-text">
+    <p><strong class="highlight">사다리차 이사 비용</strong>을 비교할 때 단순히 최종 금액만 보면 안 됩니다. <strong class="highlight">사다리차 견적</strong>을 비교할 때는 다음 3가지를 필수로 확인해야 합니다. 견적 비교는 <strong class="highlight">전국 30개 이상의 지역</strong>에서 동일하게 적용됩니다. (<strong class="highlight">경기 안산, 충북 청주, 전북 군산, 경남 김해, 경북 포항, 강원 춘천</strong> 등)</p>
+  </div>
+  <ol>
+    <li><strong class="highlight">보험 가입 여부 및 보상 범위:</strong> 이사 중 파손에 대비하여 이사업체가 <strong class="highlight">이사 화물 배상 책임 보험</strong>에 가입되어 있는지 확인해야 합니다. 사다리차 작업 중 발생하는 사고는 일반 이사와 달리 고액의 배상이 필요할 수 있습니다.</li>
+    <li><strong class="highlight">추가 비용 발생 조건:</strong> 견적서에 <strong class="highlight">추가 비용 발생 조건</strong>(예: 짐량 초과, 층수 변경, 주차 불가 시 수작업)을 명확히 기재해야 합니다. <strong class="highlight">사다리차 사용료</strong>가 터무니없이 저렴하다면 추후 추가 요금을 요구하는 경우가 많습니다.</li>
+    <li><strong class="highlight">업체 신뢰도 및 후기:</strong> 이사업체의 <strong class="highlight">고객 후기</strong>와 <strong class="highlight">사업자등록 여부</strong>를 확인하여 신뢰할 수 있는 업체인지 판단해야 합니다. 특히 <strong class="highlight">사다리차 업체</strong>는 전문성을 요구하므로, 후기를 꼼꼼히 살펴보는 것이 좋습니다.</li>
+  </ol>
+
+  <div class="citation-block">
+    <h4>공신력 있는 외부 정보 참고 (신뢰성 확보)</h4>
+    <p>사다리차 이사와 관련된 신뢰도 높은 정보를 확인하세요.</p>
+    <ul>
+      <li><a href="https://namu.wiki/w/%EC%9D%B4%EC%82%AC%EC%97%85%EC%B2%B4" target="_blank">이사 업체 - 나무위키</a> (이사 업체 유형 및 서비스 정의)</li>
+      <li><a href="https://www.consumer.go.kr/kca/index.do" target="_blank">한국소비자원</a> (이사 서비스 관련 피해 구제 정보)</li>
+      <li><a href="https://www.molit.go.kr/" target="_blank">국토교통부</a> (이사 서비스 관련 법규 및 정책 정보)</li>
+      <li><a href="https://www.ts2020.kr/" target="_blank">교통안전공단</a> (사다리차 등 특수 장비 안전 규정 참고)</li>
+      <li><a href="https://www.gov.kr/portal/main" target="_blank">정부24</a> (이사 관련 행정 처리 및 전입신고 안내)</li>
+    </ul>
+  </div>
+
+  <div class="main-text">
+    <p>저희는 <strong class="highlight">사다리차 이사 비용</strong>을 투명하게 공개하고, 고객님의 이사 환경에 최적화된 맞춤 견적을 제공합니다. <strong class="highlight">전국 30개 이상의 지역</strong>에서 활동하는 검증된 이사업체들의 견적을 한 번에 비교하여, 고객님의 소중한 이사를 안전하고 합리적인 가격으로 돕겠습니다.</p>
+    <p><strong>함께 많이 찾는 키워드:</strong> <strong class="highlight">포장이사 가격비교</strong>, <strong class="highlight">원룸이사 비용</strong>, <strong class="highlight">반포장이사 비용</strong>, <strong class="highlight">사다리차 사용료</strong>, <strong class="highlight">사다리차 층수별 요금</strong>, <strong class="highlight">이사짐센터 추천</strong>, <strong class="highlight">손 없는 날 이사비용</strong>, <strong class="highlight">입주청소 비용</strong>, <strong class="highlight">짐 운반 비용</strong></p>
+    <p><strong>전국 주요 지역 키워드:</strong> <strong class="highlight">서울</strong>(강남, 송파, 강동), <strong class="highlight">부산</strong>(해운대, 부산진구), <strong class="highlight">대구</strong>(수성구, 달서구), <strong class="highlight">인천</strong>(송도, 부평), <strong class="highlight">광주</strong>(광산구, 서구), <strong class="highlight">대전</strong>(유성구, 서구), <strong class="highlight">울산</strong>(남구, 중구), <strong class="highlight">경기</strong>(수원, 용인, 성남, 고양, 화성, 평택, 안산), <strong class="highlight">강원</strong>(춘천, 원주), <strong class="highlight">충북</strong>(청주, 충주), <strong class="highlight">충남</strong>(천안, 아산), <strong class="highlight">전북</strong>(전주, 익산, 군산), <strong class="highlight">전남</strong>(순천, 목포), <strong class="highlight">경북</strong>(포항, 구미, 경산), <strong class="highlight">경남</strong>(창원, 김해, 양산), <strong class="highlight">제주</strong></p>
+  </div>
+</section>
+
+<section id="무료견적신청" aria-label="사다리차 이사 무료 견적 신청">
+  <h2>사다리차 이사 비용 무료 견적 신청하기</h2>
+  <form action="/submit-estimate" method="POST" aria-describedby="견적폼설명">
+    <p id="견적폼설명" class="main-text">아래 폼을 작성해주시면 고객님의 이사 환경에 맞는 <strong class="highlight">사다리차 이사 비용</strong>을 비교 분석하여 최적의 견적을 안내해드립니다. <strong class="highlight">2026년 최신 가격</strong>을 기준으로 신속하게 상담을 진행해드립니다.</p>
+
+    <div style="display: flex; gap: 20px;">
+      <div style="flex: 1;">
+        <label for="이사유형">이사 유형</label>
+        <select id="이사유형" name="type" required>
+          <option value="">이사 유형 선택</option>
+          <option value="포장이사">포장이사 (사다리차 포함)</option>
+          <option value="반포장이사">반포장이사 (사다리차 포함)</option>
+          <option value="일반이사">일반이사 (사다리차 별도)</option>
+          <option value="사다리차단독">사다리차 단독 이용 (용달이사 시)</option>
+        </select>
+      </div>
+      <div style="flex: 1;">
+        <label for="이사일">이사 예정일</label>
+        <input type="date" id="이사일" name="date" required />
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 20px;">
+      <div style="flex: 1;">
+        <label for="출발지">출발지 (예: 서울시 강남구)</label>
+        <input type="text" id="출발지" name="from" placeholder="출발지 주소 입력" required />
+      </div>
+      <div style="flex: 1;">
+        <label for="도착지">도착지 (예: 경기도 성남시)</label>
+        <input type="text" id="도착지" name="to" placeholder="도착지 주소 입력" required />
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 20px;">
+      <div style="flex: 1;">
+        <label for="출발층수">출발지 층수 (예: 10층)</label>
+        <input type="number" id="출발층수" name="from_floor" placeholder="숫자만 입력 (저층/고층 판단)" required min="1" />
+      </div>
+      <div style="flex: 1;">
+        <label for="도착층수">도착지 층수 (예: 5층)</label>
+        <input type="number" id="도착층수" name="to_floor" placeholder="숫자만 입력 (저층/고층 판단)" required min="1" />
+      </div>
+    </div>
+
+    <label for="짐량">짐량 (이사 규모)</label>
+    <select id="짐량" name="volume" required>
+      <option value="">이사 규모 선택</option>
+      <option value="원룸">원룸/오피스텔 (1톤 미만)</option>
+      <option value="소형">24평 이하 (1톤~2.5톤)</option>
+      <option value="중형">25평~35평 (5톤)</option>
+      <option value="대형">36평 이상 (5톤 이상)</option>
+    </select>
+
+    <label for="연락처">연락처</label>
+    <input type="tel" id="연락처" name="phone" placeholder="010-0000-0000" pattern="[0-9]{3}-?[0-9]{4}-?[0-9]{4}" required />
+
+    <label for="문의내용">추가 문의사항 (선택사항)</label>
+    <textarea id="문의내용" name="message" rows="4" placeholder="특수 짐(피아노, 에어컨), 주차 환경, 기타 요청사항 등을 남겨주세요."></textarea>
+
+    <button type="submit" class="cta">무료 견적 요청하기</button>
+  </form>
+</section>
+
+<section id="자주묻는질문" aria-label="사다리차 이사 자주 묻는 질문 FAQ">
+  <h2>사다리차 이사 관련 자주 묻는 질문 (FAQ)</h2>
+  <dl class="faq">
+    <dt>사다리차 비용이 포장이사 견적에 포함되어 있나요?</dt>
+    <dd>포장이사 업체마다 다릅니다. 대부분의 업체는 견적 시 <strong class="highlight">사다리차 사용료</strong>를 포함하여 총액으로 제시합니다. 하지만 일부 업체는 별도로 견적을 낼 수 있으므로, 견적서에서 "사다리차 포함" 여부를 명확히 확인해야 합니다.</dd>
+
+    <dt>사다리차 층수 계산은 어떻게 하나요?</dt>
+    <dd>사다리차 층수 계산은 <strong class="highlight">출발지와 도착지 중 높은 층수</strong>를 기준으로 합니다. 만약 15층에서 5층으로 이사한다면 15층 사다리차 요금을 적용합니다.</dd>
+
+    <dt>사다리차 작업 가능 여부는 어떻게 알 수 있나요?</dt>
+    <dd>이사하는 아파트나 건물 관리사무소에 <strong class="highlight">사다리차 작업 가능 여부</strong> 및 <strong class="highlight">작업 시간</strong>을 문의하세요. 일부 아파트는 사다리차 접근 금지 구역이거나 특정 시간대에만 허용될 수 있습니다. <strong class="highlight">현장 방문 견적</strong> 시 업체에서 미리 확인해주는 것이 일반적입니다.</dd>
+
+    <dt>짐 운반에 사다리차를 반드시 써야 하나요?</dt>
+    <dd>법적으로 의무는 아니지만, 2층 이상의 고층 이사 시 <strong class="highlight">사다리차</strong>를 이용하지 않으면 짐 운반 시간이 오래 걸리고 인건비가 더 많이 발생합니다. 특히 가전/가구 파손 위험이 크므로 <strong class="highlight">사다리차 사용</strong>을 권장합니다. 1층이나 저층(빌라 2층)은 짐량에 따라 인력 운반이 유리할 수 있습니다.</dd>
+
+    <dt>사다리차 비용을 줄이는 방법이 있나요?</dt>
+    <dd>가장 확실한 방법은 <strong class="highlight">비수기 이사</strong>, <strong class="highlight">평일 이사</strong>, <strong class="highlight">짐량 최소화</strong>입니다. 또한 여러 <strong class="highlight">이사 업체 견적</strong>을 비교하여 가장 합리적인 곳을 선택하세요. <strong class="highlight">사다리차 업체</strong> 단독 계약보다는 이사업체 통합 견적이 저렴할 때가 많습니다.</dd>
+  </dl>
+</section>
+
+<section id="문의하기" aria-label="고객 문의 및 연락처">
+  <h2>고객 문의 및 연락처</h2>
+  <div class="content-card">
+    <p>견적 문의: <strong>010-1234-5678</strong> (24시간 상담 가능)</p>
+    <p>이메일 문의: <a href="mailto:info@yourdomain.kr">info@yourdomain.kr</a></p>
+    <p>업무 시간: 평일 09:00~19:00 (주말 및 공휴일 상담 가능)</p>
+  </div>
+</section>
+
+<footer>
+  <p style="text-align:center; color:#777; font-size:0.9rem;">&copy; 2026 이사 비용 비교 센터 | All Rights Reserved.</p>
+</footer>
+
+
+  
